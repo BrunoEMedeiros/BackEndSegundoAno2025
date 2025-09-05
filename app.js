@@ -1,6 +1,9 @@
 import express from "express";
+import cors from "cors";
 
 const app = express();
+app.use(cors());
+app.use(express.json());
 
 let listaPessoas = [
   { id: 1, nome: "Bruno", idade: 26 },
@@ -14,7 +17,7 @@ app.get("/perfil/:id", (requisicao, resposta) => {
 
   const pessoa = listaPessoas.find((pessoa) => pessoa.id == id);
 
-  return resposta.send(`Ola ${pessoa.nome} que tem ${pessoa.idade} anos`);
+  return resposta.status(200).json(pessoa);
 });
 
 app.listen(3000, () => {
