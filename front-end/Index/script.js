@@ -1,6 +1,6 @@
 window.addEventListener("load", async () => {
   const div_root = document.querySelector("#root");
-  const resposta = await fetch("http://192.168.1.15:3000/produtos");
+  const resposta = await fetch("http://localhost:3000/produtos");
   const produtos = await resposta.json();
 
   produtos.map((p) => {
