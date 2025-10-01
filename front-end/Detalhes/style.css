@@ -27,6 +27,11 @@ body {
   align-items: center;
 }
 
+img {
+  width: 500px;
+  height: 650px;
+}
+
 #direita {
   flex: 1;
   display: flex;
@@ -38,7 +43,7 @@ body {
 #conteudo {
   background-color: aqua;
   height: 650px;
-  width: 70%;
+  width: 500px;
 
   display: flex;
   flex-direction: column;
@@ -55,11 +60,13 @@ h1 {
 }
 
 p {
-  font-size: 25px;
+  font-size: 18px;
   background-color: brown;
 
   flex: 3;
   width: 100%;
+  word-wrap: break-word;
+  text-align: justify;
 }
 
 h3 {

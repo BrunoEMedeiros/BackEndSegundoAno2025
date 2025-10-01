@@ -4,6 +4,10 @@ window.addEventListener("load", async () => {
   const produtos = await resposta.json();
 
   produtos.map((p) => {
+    const link = document.createElement("a");
+    link.href = `../Detalhes/detalhes.html?id=${p.id}`;
+    link.target = "_blank";
+
     const div_card = document.createElement("div");
     div_card.id = "card";
 
@@ -19,6 +23,11 @@ window.addEventListener("load", async () => {
     div_card.appendChild(imagem_card);
     div_card.appendChild(titulo_card);
     div_card.appendChild(preco_card);
-    div_root.appendChild(div_card);
+
+    link.appendChild(div_card);
+
+    div_root.appendChild(link);
   });
 });
+
+//receiving_page.html?product=shirt&color=blue
