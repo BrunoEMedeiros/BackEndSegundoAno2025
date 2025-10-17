@@ -1,5 +1,5 @@
 window.addEventListener("load", async () => {
-  const div_root = document.querySelector("#root");
+  const div_content = document.querySelector("#content");
   const resposta = await fetch("http://localhost:3000/produtos");
   const produtos = await resposta.json();
 
@@ -26,7 +26,7 @@ window.addEventListener("load", async () => {
 
     link.appendChild(div_card);
 
-    div_root.appendChild(link);
+    div_content.appendChild(link);
   });
 });
 
