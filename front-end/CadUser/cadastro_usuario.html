@@ -3,27 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Entre ou Cadastre-se</title>
-    <link rel="stylesheet" href="./style.css" />
+    <title>Cadastre-se</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div id="root">
+      <h1>Junte-se a nós!</h1>
       <div id="form">
-        <h2>Entre ou Cadastre-se</h2>
+        <div class="input_field">
+          <label for="nome">Nome</label>
+          <input id="nome" type="text" placeholder="Digite seu nome..." />
+        </div>
         <div class="input_field">
           <label for="email">Email</label>
           <input id="email" type="text" placeholder="Digite seu email..." />
         </div>
         <div class="input_field">
           <label for="senha">Senha</label>
-          <input id="senha" type="password" placeholder="Digite seu email..." />
+          <input id="senha" type="password" placeholder="*******" />
         </div>
         <div id="button_container">
-          <button>Entrar</button>
+          <button>Salvar</button>
         </div>
-        <a href="../CadUser/cadastro_usuario.html">
-          <h3>Cadastre-se</h3>
-        </a>
       </div>
     </div>
     <script src="./script.js"></script>
