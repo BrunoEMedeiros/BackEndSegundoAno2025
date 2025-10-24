@@ -30,6 +30,12 @@ app.post("/usuarios/login", async (req, res) => {
   return res.status(401).json("Usuario ou senha incorretos");
 });
 
+app.post("/usuarios", async (req, res) => {
+  const { nome, email, senha } = req.body;
+  await sql`insert into usuarios(nome, email, senha, nivel) values (${nome}, ${email}, ${senha}, 1)`;
+  return res.status(201).json("cadastrado");
+});
+
 app.listen(3000, () => {
   console.log("No ar!");
 });
