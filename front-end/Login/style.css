@@ -54,3 +54,11 @@ button {
 
   width: 100px;
 }
+
+a {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  font-size: 1.6rem;
+}
