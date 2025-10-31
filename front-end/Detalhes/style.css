@@ -75,9 +75,13 @@ h3 {
 
   flex: 1;
   width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 button {
-  flex: 1;
+  flex: 0.4;
   width: 100%;
 }

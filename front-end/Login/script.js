@@ -14,7 +14,6 @@ document.querySelector("button").addEventListener("click", async () => {
 
   if (resposta.status == 200) {
     const usuario = await resposta.json();
-    console.log(usuario);
     localStorage.setItem("id_user", usuario.id);
     localStorage.setItem("nome", usuario.nome);
     return (window.location.href = "../Perfil/perfil.html");

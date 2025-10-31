@@ -36,6 +36,15 @@ app.post("/usuarios", async (req, res) => {
   return res.status(201).json("cadastrado");
 });
 
+app.post("/comprar", async (req, res) => {
+  const { total, id_produto, id_user } = req.body;
+
+  const id_venda =
+    await sql`insert into vendas(total, data_venda, id_user, id_produto) values(${total},${new Date()},${id_user},${id_produto}) returning id`;
+
+  return res.status(201).json("Compra feita!");
+});
+
 app.listen(3000, () => {
   console.log("No ar!");
 });

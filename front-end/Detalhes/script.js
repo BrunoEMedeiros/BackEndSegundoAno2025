@@ -23,8 +23,11 @@ window.addEventListener("load", async () => {
   const preco = document.createElement("h3");
   preco.innerText = produto.preco;
 
-  div_conteudo.appendChild(titulo);
-  div_conteudo.appendChild(descricao);
+  const botao_comprar = document.createElement("button");
+  botao_comprar.innerText = "Comprar";
 
-  div_conteudo.appendChild(preco);
+  div_conteudo.append(titulo);
+  div_conteudo.append(descricao);
+  div_conteudo.append(preco);
+  div_conteudo.append(botao_comprar);
 });
