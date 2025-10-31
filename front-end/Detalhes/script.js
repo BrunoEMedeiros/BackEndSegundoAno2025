@@ -26,6 +26,28 @@ window.addEventListener("load", async () => {
   const botao_comprar = document.createElement("button");
   botao_comprar.innerText = "Comprar";
 
+  botao_comprar.addEventListener("click", async () => {
+    const id_user = localStorage.getItem("id_user");
+    if (id_user) {
+      const resposta = await fetch("http://localhost:3000/comprar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          total: produto.preco,
+          id_produto: produto.id,
+          id_user: id_user,
+        }),
+      });
+      if (resposta.status == 201) {
+        alert("Parabens pela compra!");
+      }
+    } else {
+      window.location.href = "../Login/login.html";
+    }
+  });
+
   div_conteudo.append(titulo);
   div_conteudo.append(descricao);
   div_conteudo.append(preco);

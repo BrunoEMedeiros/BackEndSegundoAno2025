@@ -4,11 +4,13 @@ window.addEventListener("load", async () => {
   const produtos = await resposta.json();
 
   const link_entrar = document.querySelector("#profile");
+
   if (localStorage.getItem("id_user")) {
     link_entrar.href = "../Perfil/perfil.html";
   } else {
     link_entrar.href = "../Login/login.html";
   }
+
   produtos.map((p) => {
     const link = document.createElement("a");
     link.href = `../Detalhes/detalhes.html?id=${p.id}`;
