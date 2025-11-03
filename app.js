@@ -45,6 +45,16 @@ app.post("/comprar", async (req, res) => {
   return res.status(201).json("Compra feita!");
 });
 
+app.get("/usuarios/compras/:id", async (req, res) => {
+  const { id } = req.params;
+  const compras =
+    await sql`select v.id, v.total, v.data_venda, p.titulo, p.imagem from vendas as v
+      join produtos as p
+      on v.id_produto = p.id
+      where v.id_user = ${id}`;
+  return res.status(200).json(compras);
+});
+
 app.listen(3000, () => {
   console.log("No ar!");
 });
