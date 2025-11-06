@@ -1,0 +1,169 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-size: 62.5%;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  font-size: 1rem;
+  padding: 16px;
+}
+
+main {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#profile_header {
+  display: flex;
+  gap: 5px;
+}
+
+#cadastro_produto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input_container {
+  display: flex;
+  /* align-items: center; */
+  flex-direction: column;
+  gap: 5px;
+}
+
+label {
+  font-size: 16px;
+}
+
+input {
+  padding: 8px;
+}
+
+textarea {
+  width: 600px;
+  resize: none;
+  padding: 8px;
+}
+
+#nome {
+  width: 390px;
+}
+
+#campos_cadastro_produto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#sair {
+  padding: 10px;
+  width: 100px;
+}
+
+#primeiro_container {
+  display: flex;
+  gap: 10px;
+}
+
+#imagem {
+  width: 600px;
+}
+
+#botao_novo_produto {
+  padding: 20px;
+}
+
+#novo_produto {
+  font-size: 2.5rem;
+  padding: 20px;
+}
+
+#produtos_label {
+  text-align: center;
+}
+
+#card {
+  padding: 12px;
+  border: 1px solid black;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  justify-content: space-around;
+
+  align-items: center;
+
+  width: 300px;
+}
+
+img {
+  height: 250px;
+  width: 100%;
+
+  border-radius: 12px;
+}
+
+h5 {
+  font-size: 20px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+h6 {
+  font-size: 16px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  color: darkgray;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+p {
+  font-size: 1.5rem;
+}
+
+#produtos {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  gap: 18px;
+
+  padding-bottom: 16px;
+}
+
+#div_acoes {
+  display: flex;
+  gap: 10px;
+}
+.botao_acao {
+  width: 50px;
+}

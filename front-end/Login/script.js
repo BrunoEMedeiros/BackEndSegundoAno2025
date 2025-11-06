@@ -16,6 +16,9 @@ document.querySelector("button").addEventListener("click", async () => {
     const usuario = await resposta.json();
     localStorage.setItem("id_user", usuario.id);
     localStorage.setItem("nome", usuario.nome);
+    if (usuario.nivel == 2) {
+      return (window.location.href = "../Dashboard/dashboard.html");
+    }
     return (window.location.href = "../Perfil/perfil.html");
   } else {
     alert("Usuario ou senha incorretos");

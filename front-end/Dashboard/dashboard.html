@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="root">
+      <header>
+        <div id="profile_header">
+          <h1>Painel administrativo de</h1>
+          <h1 id="nome_usuario"></h1>
+        </div>
+        <button id="sair">Sair</button>
+      </header>
+      <main>
+        <section id="cadastro_produto">
+          <h2 id="novo_produto">Novo produto</h2>
+          <section id="campos_cadastro_produto">
+            <div id="primeiro_container">
+              <div class="input_container">
+                <label for="nome">Nome do Produto</label>
+                <input
+                  type="text"
+                  name="nome"
+                  id="nome"
+                  placeholder="Garrafa de agua 150ml"
+                />
+              </div>
+              <div class="input_container">
+                <label for="preco">Preço</label>
+                <input type="number" name="preco" id="preco" placeholder="10" />
+              </div>
+            </div>
+            <div class="input_container">
+              <label for="imagem">Url da imagem</label>
+              <input
+                type="text"
+                name="imagem"
+                id="imagem"
+                placeholder="https://picsum.photos/200"
+              />
+            </div>
+            <div class="input_container">
+              <label for="descricao">Descrição</label>
+              <textarea
+                id="descricao"
+                rows="5"
+                placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean pulvinar sem nec libero rhoncus porta. Sed fermentum risus eros, nec commodo nulla consectetur in. Maecenas quis volutpat dolor. Ut erat dolor, elementum sagittis justo mollis, scelerisque sodales ante. Orci varius natoque penatibus et magnis"
+              ></textarea>
+            </div>
+            <div>
+              <button id="botao_novo_produto">Criar novo produto</button>
+            </div>
+          </section>
+        </section>
+        <h1 id="produtos_label">Meus produtos</h1>
+
+        <div id="produtos"></div>
+      </main>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>

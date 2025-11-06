@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const preco_card = document.createElement("h6");
       preco_card.innerText = "R$ " + compra.total;
 
+      console.log(compra.data_venda);
       const date = new Date(compra.data_venda);
 
       const options = {
