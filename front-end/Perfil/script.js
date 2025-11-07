@@ -55,5 +55,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 botao_sair.addEventListener("click", () => {
   localStorage.removeItem("id_user");
   localStorage.removeItem("nome");
+  localStorage.removeItem("nivel");
   window.location.href = "../Index/index.html";
 });

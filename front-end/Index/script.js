@@ -1,16 +1,24 @@
 window.addEventListener("load", async () => {
   const div_content = document.querySelector("#content");
-  const resposta = await fetch("http://localhost:3000/produtos");
-  const produtos = await resposta.json();
-
   const link_entrar = document.querySelector("#profile");
 
-  if (localStorage.getItem("id_user")) {
+  if (localStorage.getItem("nivel") == 1) {
     link_entrar.href = "../Perfil/perfil.html";
+  } else if (localStorage.getItem("nivel") == 2) {
+    link_entrar.href = "../Dashboard/dashboard.html";
   } else {
     link_entrar.href = "../Login/login.html";
   }
 
+  const resposta = await fetch("http://localhost:3000/produtos");
+  const produtos = await resposta.json();
+  if (produtos.length == 0) {
+    const mensagem = document.createElement("h1");
+    mensagem.innerText = "Nenhum produto cadastrado....";
+
+    div_content.append(mensagem);
+    return;
+  }
   produtos.map((p) => {
     const link = document.createElement("a");
     link.href = `../Detalhes/detalhes.html?id=${p.id}`;
@@ -37,5 +45,3 @@ window.addEventListener("load", async () => {
     div_content.appendChild(link);
   });
 });
-
-//receiving_page.html?product=shirt&color=blue

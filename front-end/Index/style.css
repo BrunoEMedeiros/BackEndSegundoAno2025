@@ -19,6 +19,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 16px;
+
+  background-color: #f2f3f4;
 }
 
 header {

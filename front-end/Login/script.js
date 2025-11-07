@@ -16,6 +16,7 @@ document.querySelector("button").addEventListener("click", async () => {
     const usuario = await resposta.json();
     localStorage.setItem("id_user", usuario.id);
     localStorage.setItem("nome", usuario.nome);
+    localStorage.setItem("nivel", usuario.nivel);
     if (usuario.nivel == 2) {
       return (window.location.href = "../Dashboard/dashboard.html");
     }
