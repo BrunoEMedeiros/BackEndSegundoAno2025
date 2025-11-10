@@ -64,6 +64,7 @@ app.post("/comprar", async (req, res) => {
   return res.status(201).json("Compra feita!");
 });
 
+// Cadastrar novo produto
 app.post("/produtos", async (req, res) => {
   const { titulo, descricao, imagem, preco, id_user } = req.body;
   await sql`insert into produtos(titulo, descricao, imagem, preco, id_user) values(${titulo},${descricao},${imagem},${preco},${id_user})`;
@@ -71,6 +72,7 @@ app.post("/produtos", async (req, res) => {
   return res.status(201).json("produto criado");
 });
 
+// Deletar produto
 app.delete("/produtos/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -81,6 +83,15 @@ app.delete("/produtos/:id", async (req, res) => {
       .status(409)
       .json("Produto não pode ser deletado por que ja foi vendido");
   }
+});
+
+app.put("/produtos/:id", async (req, res) => {
+  const { id } = req.params;
+  const { titulo, descricao, imagem, preco } = req.body;
+
+  await sql`UPDATE public.produtos SET titulo=${titulo}, descricao=${descricao}, imagem=${imagem}, preco=${preco} WHERE id = ${id};`;
+
+  return res.status(201).json("alterado");
 });
 
 app.listen(3000, () => {

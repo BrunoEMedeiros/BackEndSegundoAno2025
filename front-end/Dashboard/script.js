@@ -1,8 +1,10 @@
-const botao_novo_produto = document.querySelector("#botao_novo_produto");
+let botao_novo_produto = document.querySelector("#botao_novo_produto");
 const h1_nome_usuario = document.querySelector("#nome_usuario");
 const id_user = localStorage.getItem("id_user");
 const nome = localStorage.getItem("nome");
 const botao_sair = document.querySelector("#sair");
+
+const comeco_pagina = document.querySelector("#novo_produto");
 h1_nome_usuario.innerHTML = nome;
 
 async function ListarMeusProdutos() {
@@ -36,6 +38,16 @@ async function ListarMeusProdutos() {
     botao_editar.id = "editar";
     botao_editar.className = "botao_acao";
     botao_editar.innerText = "✏️";
+    botao_editar.addEventListener("click", () => {
+      comeco_pagina.scrollIntoView();
+      HabilitarFormularioEdicaoProdutos(
+        p.id,
+        p.titulo,
+        p.descricao,
+        p.imagem,
+        p.preco
+      );
+    });
     const botao_excluir = document.createElement("button");
     botao_excluir.id = "excluir";
     botao_excluir.className = "botao_acao";
@@ -58,40 +70,42 @@ async function ListarMeusProdutos() {
   });
 }
 
-async function ExcluirProduto(id) {
-  const resposta = await fetch(`http://localhost:3000/produtos/${id}`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
+function HabilitarFormularioEdicaoProdutos(
+  id,
+  titulo,
+  descricao,
+  imagem,
+  preco
+) {
+  document.querySelector("#nome").value = titulo;
+  document.querySelector("#descricao").value = descricao;
+  document.querySelector("#preco").value = preco;
+  document.querySelector("#imagem").value = imagem;
+
+  let new_botao = botao_novo_produto.cloneNode(true);
+  botao_novo_produto.parentNode.replaceChild(new_botao, botao_novo_produto);
+  botao_novo_produto = new_botao;
+  botao_novo_produto.addEventListener("click", () => {
+    AlterarProduto(id);
   });
+  botao_novo_produto.innerText = "Salvar mudanças";
 
-  if (resposta.status == 200) {
-    return alert("Produto deletado!");
-  } else {
-    const mensagem = await resposta.json();
-    return alert(mensagem);
-  }
+  return;
 }
 
-function LimparCampos() {
-  document.querySelector("#nome").value = "";
-  document.querySelector("#descricao").value = "";
-  document.querySelector("#preco").value = "";
-  document.querySelector("#imagem").value = "";
-}
-
-document.addEventListener("DOMContentLoaded", async () => {
+function HabilitarFormularioCadastrarProdutos() {
+  LimparCampos();
+  LimparProdutos();
   ListarMeusProdutos();
-});
+  let new_botao = botao_novo_produto.cloneNode(true);
+  botao_novo_produto.parentNode.replaceChild(new_botao, botao_novo_produto);
+  botao_novo_produto = new_botao;
+  botao_novo_produto.addEventListener("click", CadastrarProduto);
+  botao_novo_produto.innerText = "Cadastrar Produto";
+  return;
+}
 
-botao_sair.addEventListener("click", async () => {
-  localStorage.removeItem("id_user");
-  localStorage.removeItem("nome");
-  window.location.href = "../Index/index.html";
-});
-
-botao_novo_produto.addEventListener("click", async () => {
+async function CadastrarProduto() {
   const titulo = document.querySelector("#nome").value;
   const descricao = document.querySelector("#descricao").value;
   const preco = document.querySelector("#preco").value;
@@ -111,11 +125,85 @@ botao_novo_produto.addEventListener("click", async () => {
       id_user,
     }),
   });
-
   if (resposta.status == 201) {
     alert("Produto cadastrado!");
+    LimparProdutos();
     ListarMeusProdutos();
     LimparCampos();
     return;
   }
+}
+
+async function AlterarProduto(id) {
+  const titulo = document.querySelector("#nome").value;
+  const descricao = document.querySelector("#descricao").value;
+  const preco = document.querySelector("#preco").value;
+  const imagem = document.querySelector("#imagem").value;
+
+  const resposta = await fetch(`http://localhost:3000/produtos/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      titulo,
+      descricao,
+      imagem,
+      preco,
+    }),
+  });
+
+  if (resposta.status == 201) {
+    HabilitarFormularioCadastrarProdutos();
+    return alert("Produto alterado com sucesso!");
+  }
+}
+
+async function ExcluirProduto(id) {
+  const resposta = await fetch(`http://localhost:3000/produtos/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (resposta.status == 200) {
+    LimparProdutos();
+    ListarMeusProdutos();
+    return alert("Produto deletado!");
+  } else {
+    const mensagem = await resposta.json();
+    return alert(mensagem);
+  }
+}
+
+function LimparCampos() {
+  document.querySelector("#nome").value = "";
+  document.querySelector("#descricao").value = "";
+  document.querySelector("#preco").value = "";
+  document.querySelector("#imagem").value = "";
+}
+
+function LimparProdutos() {
+  const div_content = document.querySelector("#produtos");
+
+  while (div_content.firstChild) {
+    div_content.removeChild(div_content.firstChild);
+  }
+
+  return;
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+  ListarMeusProdutos();
+});
+
+botao_sair.addEventListener("click", async () => {
+  localStorage.removeItem("id_user");
+  localStorage.removeItem("nome");
+  window.location.href = "../Index/index.html";
+});
+
+botao_novo_produto.addEventListener("click", () => {
+  CadastrarProduto();
 });
