@@ -48,6 +48,7 @@ async function ListarMeusProdutos() {
         p.preco
       );
     });
+
     const botao_excluir = document.createElement("button");
     botao_excluir.id = "excluir";
     botao_excluir.className = "botao_acao";

@@ -85,6 +85,7 @@ app.delete("/produtos/:id", async (req, res) => {
   }
 });
 
+// Rota para alterar as informações do produto
 app.put("/produtos/:id", async (req, res) => {
   const { id } = req.params;
   const { titulo, descricao, imagem, preco } = req.body;
